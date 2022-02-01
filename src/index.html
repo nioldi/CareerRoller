@@ -41,7 +41,7 @@
     document.querySelector('#button').addEventListener('click', get)
 
     function get() {
-        document.querySelector('#loading').innerHTML = '<div class="lds-ring"><div></div><div></div><div></div><div></div></div>'
+        document.querySelector('#loading').innerHTML = '<div class="lds-ring">'
         window.setTimeout(() => {
             fetch('../OpenJsonData.json')
                 .then(response => response.json())
@@ -52,6 +52,8 @@
                     document.querySelector('#bundes').innerHTML = career['Province'] + '<br>'
                     if (career['Description'] !== '') {
                         document.querySelector('#des').innerHTML = career['Description'] + '<br>'
+                    } else {
+                        document.querySelector('#des').innerHTML = 'Kein Beschreibung'
                     }
                 })
             document.querySelector('#loading').innerHTML = ''
