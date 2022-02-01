@@ -50,7 +50,7 @@
                     document.querySelector('#title').innerHTML = career['Titel'] + '<br>'
                     document.querySelector('#id').innerHTML = career['CourseId'] + '<br>'
                     document.querySelector('#bundes').innerHTML = career['Province'] + '<br>'
-                    if (career['Description'] !== '') {
+                    if (career['Description'] !== null) {
                         document.querySelector('#des').innerHTML = career['Description'] + '<br>'
                     } else {
                         document.querySelector('#des').innerHTML = 'Kein Beschreibung'
