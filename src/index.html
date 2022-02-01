@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch Demo</title>
+    <link href="style.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;600&family=Kanit&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+<div id="grid">
+    <button id="button">Click me</button>
+    <div id="loading">
+    </div>
+</div>
+<div>
+    <h2 class="h1">Titel</h2>
+    <ul>
+        <li id="title"></li>
+    </ul>
+</div>
+<div>
+    <h2 class="h1">Id</h2>
+    <ul>
+        <li id="id"></li>
+    </ul>
+</div>
+<div>
+    <h2 class="h1">Bundesland</h2>
+    <ul>
+        <li id="bundes"></li>
+    </ul>
+</div>
+<div>
+    <h2 class="h1">Beschreibung</h2>
+    <p id="des"></p>
+</div>
+<script type="text/javascript">
+    document.querySelector('#button').addEventListener('click', get)
+
+    function get() {
+        document.querySelector('#loading').innerHTML = '<div class="lds-ring"><div></div><div></div><div></div><div></div></div>'
+        window.setTimeout(() => {
+            fetch('../OpenJsonData.json')
+                .then(response => response.json())
+                .then(data => data[Math.floor(Math.random() * data.length)])
+                .then(career => {
+                    document.querySelector('#title').innerHTML = career['Titel'] + '<br>'
+                    document.querySelector('#id').innerHTML = career['CourseId'] + '<br>'
+                    document.querySelector('#bundes').innerHTML = career['Province'] + '<br>'
+                    if (career['Description'] !== '') {
+                        document.querySelector('#des').innerHTML = career['Description'] + '<br>'
+                    }
+                })
+            document.querySelector('#loading').innerHTML = ''
+        }, Math.random() * (1500 - 500) + 500);
+    }
+</script>
+</body>
+</html>
